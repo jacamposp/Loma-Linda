@@ -19,7 +19,7 @@ export default function KilosContainer({ getIdHandler }) {
 
   async function saveData() {
     Keyboard.dismiss();
-    const data = await fetch("http://192.168.1.8:3000/tomate", {
+    const data = await fetch("http://192.168.0.11:3000/tomate", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -36,7 +36,7 @@ export default function KilosContainer({ getIdHandler }) {
       }),
     });
 
-    const getQueryID = await fetch("http://192.168.1.8:3000/tomate");
+    const getQueryID = await fetch("http://192.168.0.11:3000/tomate");
     const queryID = await getQueryID.json();
 
     setDisabled(true);
