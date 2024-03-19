@@ -13,7 +13,7 @@ export default function PreciosSection({ queryID }) {
 
   async function savePrecios() {
     Keyboard.dismiss();
-    const data = await fetch("http://192.168.1.8:3000/tomatePrecio", {
+    const data = await fetch("http://192.168.0.11:3000/tomatePrecio", {
       headers: {
         "Content-Type": "application/json",
       },

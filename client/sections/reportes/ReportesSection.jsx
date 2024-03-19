@@ -7,12 +7,15 @@ export default function ReportesSection({ queryID }) {
   const [ingresos, setIngresos] = useState();
 
   async function getRow() {
-    const response = await fetch("http://192.168.1.8:3000/reporte/" + queryID, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-    });
+    const response = await fetch(
+      "http://192.168.0.11:3000/reporte/" + queryID,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+      }
+    );
 
     const data = await response.json();
     console.log(data[0]);
