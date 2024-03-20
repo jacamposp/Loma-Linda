@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 import { Layout, Tab, TabView } from "@ui-kitten/components";
 
@@ -17,34 +17,38 @@ export default function TabsContainer() {
   }
   return (
     <>
+      <View style={styles.tabContainer}>
+        <TabView
+          selectedIndex={selectedIndex}
+          onSelect={(index) => setSelectedIndex(index)}
+        >
+          <Tab title="KILOS">
+            <KilosSection getIdHandler={getId} />
+          </Tab>
+          <Tab title="PRECIOS">
+            <PreciosSection queryID={ID} />
+          </Tab>
+          <Tab title="REPORTES">
+            <ReportesSection queryID={ID} />
+          </Tab>
+        </TabView>
+      </View>
       <Text>ID: {ID}</Text>
-      <TabView
-        selectedIndex={selectedIndex}
-        onSelect={(index) => setSelectedIndex(index)}
-      >
-        <Tab title="KILOS">
-          <KilosSection getIdHandler={getId} />
-        </Tab>
-        <Tab title="PRECIOS">
-          <PreciosSection queryID={ID} />
-        </Tab>
-        <Tab title="REPORTES">
-          <ReportesSection queryID={ID} />
-        </Tab>
-      </TabView>
-      {/* <View style={styles.container}>
-        <TabItem text={"Kilos"} />
-        <TabItem text={"Precio"} />
-        <TabItem text={"Reporte"} />
-      </View> */}
     </>
   );
 }
 
 const styles = StyleSheet.create({
   tabContainer: {
-    height: 64,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 20,
+    marginRight: 10,
+    marginLeft: 10,
+    marginTop: -20,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    elevation: 5,
+  },
+  tab: {
+    backgroundColor: "#E0E5F6",
   },
 });

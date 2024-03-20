@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { View, StyleSheet, Text, Button, Keyboard } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Button,
+  Keyboard,
+  ScrollView,
+} from "react-native";
 
 import { Input } from "@ui-kitten/components";
 
@@ -19,7 +26,7 @@ export default function KilosContainer({ getIdHandler }) {
 
   async function saveData() {
     Keyboard.dismiss();
-    const data = await fetch("http://192.168.0.11:3000/tomate", {
+    const data = await fetch("http://192.168.1.8:3000/tomate", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -36,7 +43,7 @@ export default function KilosContainer({ getIdHandler }) {
       }),
     });
 
-    const getQueryID = await fetch("http://192.168.0.11:3000/tomate");
+    const getQueryID = await fetch("http://192.168.1.8:3000/tomate");
     const queryID = await getQueryID.json();
 
     setDisabled(true);
@@ -52,7 +59,10 @@ export default function KilosContainer({ getIdHandler }) {
 
   return (
     <>
-      <View style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        keyboardShouldPersistTaps={"handled"}
+      >
         <Text style={styles.title}>Kilos</Text>
         <Text>Tomate de Primera</Text>
         <View style={styles.inputGroup}>
@@ -145,14 +155,13 @@ export default function KilosContainer({ getIdHandler }) {
             disabled={disable}
           />
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
     marginTop: 10,
   },
   title: {
@@ -178,7 +187,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    backgroundColor: "#304c9f",
+    backgroundColor: "#CC2936",
     borderRadius: 200,
   },
 });
