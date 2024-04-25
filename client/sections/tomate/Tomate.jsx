@@ -15,7 +15,6 @@ import { Input } from "@ui-kitten/components";
 
 export default function Tomate() {
   const tomate = DATA.Tomates;
-  console.log(tomate);
   return (
     <>
       <ScrollView style={styles.container}>
