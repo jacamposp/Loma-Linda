@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 import { Layout, Tab, TabView } from "@ui-kitten/components";
 
 import KilosSection from "../../sections/kilos/KilosSection";
 import PreciosSection from "../../sections/precios/PreciosSection";
 import ReportesSection from "../../sections/reportes/ReportesSection";
+import Tomate from "../../sections/tomate/Tomate";
 
 export default function TabsContainer() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -17,34 +18,44 @@ export default function TabsContainer() {
   }
   return (
     <>
+      <View style={styles.tabContainer}>
+        <TabView
+          tabBarStyle={styles.tabBarStyle}
+          indicatorStyle={styles.indicatorStyle}
+          selectedIndex={selectedIndex}
+          onSelect={(index) => setSelectedIndex(index)}
+        >
+          {/* <Tab title="KILOS">
+            <KilosSection getIdHandler={getId} />
+          </Tab>
+          <Tab title="PRECIOS">
+            <PreciosSection queryID={ID} />
+          </Tab> */}
+          <Tab title="TOMATE">
+            <Tomate />
+          </Tab>
+          <Tab title="REPORTES">
+            <ReportesSection queryID={ID} />
+          </Tab>
+        </TabView>
+      </View>
       <Text>ID: {ID}</Text>
-      <TabView
-        selectedIndex={selectedIndex}
-        onSelect={(index) => setSelectedIndex(index)}
-      >
-        <Tab title="KILOS">
-          <KilosSection getIdHandler={getId} />
-        </Tab>
-        <Tab title="PRECIOS">
-          <PreciosSection queryID={ID} />
-        </Tab>
-        <Tab title="REPORTES">
-          <ReportesSection queryID={ID} />
-        </Tab>
-      </TabView>
-      {/* <View style={styles.container}>
-        <TabItem text={"Kilos"} />
-        <TabItem text={"Precio"} />
-        <TabItem text={"Reporte"} />
-      </View> */}
     </>
   );
 }
 
 const styles = StyleSheet.create({
   tabContainer: {
-    height: 64,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 10,
+    marginTop: -25,
+    marginRight: 5,
+    marginLeft: 5,
+  },
+  tabBarStyle: {
+    borderRadius: 10,
+  },
+  indicatorStyle: {
+    width: 150,
+    top: -3,
   },
 });
