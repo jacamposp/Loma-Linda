@@ -7,6 +7,7 @@ import { Layout, Tab, TabView } from "@ui-kitten/components";
 import KilosSection from "../../sections/kilos/KilosSection";
 import PreciosSection from "../../sections/precios/PreciosSection";
 import ReportesSection from "../../sections/reportes/ReportesSection";
+import Tomate from "../../sections/tomate/Tomate";
 
 export default function TabsContainer() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -19,14 +20,19 @@ export default function TabsContainer() {
     <>
       <View style={styles.tabContainer}>
         <TabView
+          tabBarStyle={styles.tabBarStyle}
+          indicatorStyle={styles.indicatorStyle}
           selectedIndex={selectedIndex}
           onSelect={(index) => setSelectedIndex(index)}
         >
-          <Tab title="KILOS">
+          {/* <Tab title="KILOS">
             <KilosSection getIdHandler={getId} />
           </Tab>
           <Tab title="PRECIOS">
             <PreciosSection queryID={ID} />
+          </Tab> */}
+          <Tab title="TOMATE">
+            <Tomate />
           </Tab>
           <Tab title="REPORTES">
             <ReportesSection queryID={ID} />
@@ -40,15 +46,16 @@ export default function TabsContainer() {
 
 const styles = StyleSheet.create({
   tabContainer: {
-    padding: 20,
-    marginRight: 10,
-    marginLeft: 10,
-    marginTop: -20,
-    backgroundColor: "#fff",
-    borderRadius: 20,
-    elevation: 5,
+    padding: 10,
+    marginTop: -25,
+    marginRight: 5,
+    marginLeft: 5,
   },
-  tab: {
-    backgroundColor: "#E0E5F6",
+  tabBarStyle: {
+    borderRadius: 10,
+  },
+  indicatorStyle: {
+    width: 150,
+    top: -3,
   },
 });

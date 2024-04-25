@@ -56,3 +56,10 @@ export async function getReporte(id) {
   );
   return result;
 }
+
+export async function getTotal() {
+  const [total] = await pool.query(
+    `SELECT SUM (precio1) + SUM(precio2) + SUM (precio3) + SUM(precio4) as Total FROM loma_linda.tomate_reportes`
+  );
+  return total;
+}
