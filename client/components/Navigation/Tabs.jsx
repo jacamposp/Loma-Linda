@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { StyleSheet, Text, View } from "react-native";
+import axios from "axios";
+
+import { Button, StyleSheet, Text, View } from "react-native";
 
 import { Layout, Tab, TabView } from "@ui-kitten/components";
 
@@ -11,35 +13,68 @@ import Tomate from "../../sections/tomate/Tomate";
 
 export default function TabsContainer() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [ID, setID] = useState(0);
+  const [tomateData, setTomateData] = useState();
+  const [isVisibleContent, setIsVisibleContent] = useState(false);
 
-  function getId(id) {
-    setID(id);
+  // useEffect(() => {
+  //   if (isVisibleContent) {
+  //   }
+  // }, [isVisibleContent]);
+
+  useEffect(() => {
+    getAllData();
+  }, []);
+
+  async function getAllData() {
+    const data = (await axios.get("http://192.168.1.8:3000/data")).data;
+    const [primera, segunda, tercera, bolilla] = data;
+
+    const tomateData = [
+      {
+        cajas: primera[0].cajas,
+        kilos: primera[0].kilos,
+        precio: primera[0].precio,
+      },
+      {
+        cajas: segunda[0].cajas,
+        kilos: segunda[0].kilos,
+        precio: segunda[0].precio,
+      },
+      {
+        cajas: tercera[0].cajas,
+        kilos: tercera[0].kilos,
+        precio: tercera[0].precio,
+      },
+      {
+        cajas: bolilla[0].cajas,
+        kilos: bolilla[0].kilos,
+        precio: bolilla[0].precio,
+      },
+    ];
+
+    setTomateData(tomateData);
+    setIsVisibleContent(true);
   }
+
   return (
     <>
       <View style={styles.tabContainer}>
-        <TabView
-          tabBarStyle={styles.tabBarStyle}
-          indicatorStyle={styles.indicatorStyle}
-          selectedIndex={selectedIndex}
-          onSelect={(index) => setSelectedIndex(index)}
-        >
-          {/* <Tab title="KILOS">
-            <KilosSection getIdHandler={getId} />
-          </Tab>
-          <Tab title="PRECIOS">
-            <PreciosSection queryID={ID} />
-          </Tab> */}
-          <Tab title="TOMATE">
-            <Tomate />
-          </Tab>
-          <Tab title="REPORTES">
-            <ReportesSection queryID={ID} />
-          </Tab>
-        </TabView>
+        {isVisibleContent ? (
+          <TabView
+            tabBarStyle={styles.tabBarStyle}
+            indicatorStyle={styles.indicatorStyle}
+            selectedIndex={selectedIndex}
+            onSelect={(index) => setSelectedIndex(index)}
+          >
+            <Tab title="TOMATE">
+              <Tomate tomateData={tomateData} />
+            </Tab>
+            <Tab title="REPORTES">
+              <ReportesSection />
+            </Tab>
+          </TabView>
+        ) : null}
       </View>
-      <Text>ID: {ID}</Text>
     </>
   );
 }

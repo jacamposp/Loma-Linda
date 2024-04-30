@@ -7,6 +7,8 @@ import {
   savePrecios,
   getReporte,
   getTotal,
+  getKilos,
+  getAllData,
 } from "./database.js";
 
 const app = express();
@@ -17,6 +19,11 @@ let queryID = 0;
 
 app.get("/", (req, res) => {
   res.send("Hellos World!");
+});
+
+app.get("/data", async (req, res) => {
+  const data = await getAllData();
+  res.json(data);
 });
 
 app.get("/tomate", async (req, res) => {
@@ -56,6 +63,11 @@ app.get("/reporte/:id", async (req, res) => {
 app.get("/reporte", async (req, res) => {
   const total = await getTotal();
   res.json(total);
+});
+
+app.get("/kilos", async (req, res) => {
+  const kilos = await getKilos();
+  res.json(kilos);
 });
 
 app.listen(3000, () => {

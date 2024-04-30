@@ -63,3 +63,28 @@ export async function getTotal() {
   );
   return total;
 }
+
+export async function getKilos() {
+  const [kilos] = await pool.query(
+    `SELECT SUM(kilos1) as kilosPrimera, SUM(kilos2) as kilosSegunda, SUM(kilos3) as kilosTercera, SUM(kilos4) as kilosBolilla FROM loma_linda.tomate_reportes`
+  );
+  return kilos;
+}
+
+export async function getAllData() {
+  const [primera] = await pool.query(
+    `SELECT SUM(kilos1) as kilos, SUM(cajas1) as cajas, SUM(precio1) as precio FROM loma_linda.tomate_reportes`
+  );
+  const [segunda] = await pool.query(
+    `SELECT SUM(kilos2) as kilos, SUM(cajas2) as cajas, SUM(precio3) as precio FROM loma_linda.tomate_reportes`
+  );
+  const [tercera] = await pool.query(
+    `SELECT SUM(kilos3) as kilos, SUM(cajas3) as cajas, SUM(precio3) as precio FROM loma_linda.tomate_reportes`
+  );
+  const [bolilla] = await pool.query(
+    `SELECT SUM(kilos4) as kilos, SUM(cajas4) as cajas, SUM(precio4) as precio FROM loma_linda.tomate_reportes`
+  );
+
+  return [primera, segunda, tercera, bolilla];
+}
+getAllData();
