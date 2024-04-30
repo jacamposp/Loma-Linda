@@ -1,8 +1,14 @@
 {
+  "iconosTomates": [
+    { "tomate": "🍅" },
+    { "cajas": "📦" },
+    { "kilos": "⚖️" },
+    { "precio": "💲" }
+  ],
   "Tomates": [
-    { "tipo": "Primera" },
-    { "tipo": "Segunda" },
-    { "tipo": "Tercera" },
-    { "tipo": "Bolilla" }
+    { "tipo": "Primera", "color": "#FB3640" },
+    { "tipo": "Segunda", "color": "#177E89" },
+    { "tipo": "Tercera", "color": "#084C61" },
+    { "tipo": "Bolilla", "color": "#FFC857" }
   ]
 }

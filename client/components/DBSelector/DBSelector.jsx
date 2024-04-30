@@ -73,7 +73,7 @@ export default function DBSelector() {
                   title={"Seleccionar"}
                   color="white"
                   onPress={() => {
-                    alert("No se ria como loca mamita");
+                    alert("En construccion");
                   }}
                 />
               </View>
