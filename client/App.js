@@ -9,14 +9,16 @@ import DBSelector from "./components/DBSelector/DBSelector";
 
 export default function App() {
   return (
-    <View style={{ height: "100%", backgroundColor: "#FCEEEF" }}>
-      <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
-        <SafeAreaView style={{ flex: 0, backgroundColor: "#CC2936" }} />
-        <SafeAreaView>
-          <DBSelector />
-          <Tabs />
-        </SafeAreaView>
-      </ApplicationProvider>
-    </View>
+    <>
+      <View style={{ height: "100%", backgroundColor: "#FCEEEF" }}>
+        <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+          <SafeAreaView style={{ flex: 0, backgroundColor: "#CC2936" }} />
+          <SafeAreaView>
+            <DBSelector />
+            <Tabs />
+          </SafeAreaView>
+        </ApplicationProvider>
+      </View>
+    </>
   );
 }

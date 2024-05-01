@@ -12,6 +12,9 @@ import DATA from "../../data/data.json";
 
 import Graph from "../../components/Graph/Graph";
 
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
 export default function Tomate({ tomateData }) {
   return (
     <>
@@ -48,6 +51,11 @@ export default function Tomate({ tomateData }) {
           );
         })}
       </ScrollView>
+      <View>
+        <TouchableOpacity style={styles.boxIcon}>
+          <FontAwesomeIcon icon={faPlus} style={{ color: "#fff" }} size={25} />
+        </TouchableOpacity>
+      </View>
     </>
   );
 }
@@ -89,5 +97,15 @@ const styles = StyleSheet.create({
   boxPrecio: {
     fontWeight: "bold",
     marginLeft: 20,
+  },
+  boxIcon: {
+    backgroundColor: "#CC2936",
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 100,
   },
 });
